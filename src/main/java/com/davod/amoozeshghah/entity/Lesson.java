@@ -22,26 +22,8 @@ public class Lesson {
     private String name;
     @Enumerated(EnumType.STRING)
     private LevelType levelType;
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = "lesson_course",
-            joinColumns = { @JoinColumn(name = "lesson_id") },
-            inverseJoinColumns = { @JoinColumn(name = "course_id") })
-    private List<Course>courses;
     @OneToMany(mappedBy = "lesson")
     private List<User>teachers;
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = "lesson_user",
-            joinColumns = { @JoinColumn(name = "lesson_id") },
-            inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    private List<User>students;
+
 
 }
